@@ -14,12 +14,16 @@ app.get('/', (req, res) => {
 
 const server = createServer(app);
 
-
 const socketio = require("socket.io");
-const io = new socketio.Server(server);
+const io = new socketio.Server(server, {
+    cors: {
+        // TODO: Change to client domain at some point
+        origin: `*`
+    }
+});
 
 io.on('connection', socket => {
-    console.log('new connection!');
+    console.log(`New connection! (${socket.id}`);
 });
 
 
