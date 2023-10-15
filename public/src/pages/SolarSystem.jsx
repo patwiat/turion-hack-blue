@@ -2,7 +2,7 @@ import React from "react";
 import Planet from "./Planet";
 import { Link } from "react-router-dom";
 
-const SolarSystem = () => {
+const SolarSystem = ({ socket }) => {
   const data = [
     { name: "Earth" },
     { name: "Earth" },
