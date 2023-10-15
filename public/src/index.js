@@ -10,19 +10,6 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import { io } from 'socket.io-client';
-
-export const socket = (() => {
-  const SERVER_URL = 'http://localhost:3000'
-  const socket = io(SERVER_URL);
-  
-  socket.on('connect', () => {
-    console.log('Established socket.io connection with server!')
-  });
-  
-  return socket;
-})();
-
 import { App } from './App'
 
 <GoogleLogin
