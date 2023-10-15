@@ -25,6 +25,8 @@ app.get('/video/:planet', (req, res) =>{
     res.sendFile(__dirname + '/videos/' + req.params['planet'] + '.mp4');
 });
 
+
+
 //Socket IO
 const server = createServer(app);
 
@@ -109,7 +111,7 @@ async function run() {
 
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 
@@ -117,19 +119,23 @@ run().catch(console.dir);
 
 
 async function viewChatLog(planet){
-    var logs = await chatLogs.findOne();
-    console.log(logs[planet]);
+    var query = {"planet": planet}
+    var logs = await chatLogs.findOne(query);
+    console.log(logs)
+    return logs.chatLogs
 }
 
 
-// async function addMessage(planet, userId, msg){
-//     var logs = await chatLogs.findOne('$elemMatch', {'earth' : chatLogs})
-//     console.log(logs)
-// }
+async function addMessage(planet, msg, userId){
+    var query = {"planet": planet}
+    var logs = await chatLogs.findOne(query)
 
-// addMessage('earth', 'testUser2', 'testMessage2')
+    logs.chatLogs.push({'message': msg, 'userId': userId});
+    await chatLogs.updateOne(query, {$set: {chatLogs: logs.chatLogs}})
+}
 
-// planets = ['earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'sun', 'asteroid belt']
-// async function addPlanets(){
-
-// }
+app.get('/chatLog/:planet', async (req, res) => {
+    var planet = req.params['planet']
+    var logs = await viewChatLog(planet)
+    res.send(logs)
+});
