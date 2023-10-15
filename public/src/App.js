@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
+import SolarSystem from "./pages/SolarSystem";
 
 import { io } from 'socket.io-client';
 
@@ -16,13 +18,13 @@ export const socket = (() => {
 })();
 
 export function App() {
-  <GoogleOAuthProvider clientID="606620997861-bd8qmbcvsg6400s2ok7votrfhe4qgk8s.apps.googleusercontent.com">
+  console.log("hello");
   return (
     <div>
-      <h1>Your website here</h1>
+      <SolarSystem />
+      <GoogleOAuthProvider clientID="606620997861-bd8qmbcvsg6400s2ok7votrfhe4qgk8s.apps.googleusercontent.com"></GoogleOAuthProvider>
     </div>
   )
-  </GoogleOAuthProvider>
 }
 
 function Chat({ title, room }) {
