@@ -1,4 +1,11 @@
-export default function Chat({ socket, title, room }) {
+export default function Chat({ title, room }) {
+  const socket = window.socket;
+  const user = window.user;
+
+  if (user) {
+    return <div>Please log in.</div>;
+  }
+
   const [roomJoined, setRoomJoined] = useState(false);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
@@ -29,10 +36,14 @@ export default function Chat({ socket, title, room }) {
   }, [roomJoined])
 
   return (
-    <div className='' width='600' height='800' style={{
-      backgroundColor: 'black',
-      color: 'white',
-    }}>
+    <div 
+      style={{
+        display: flex,
+        backgroundColor: 'black',
+        color: 'white',
+        
+      }}
+    >
       <h1>{title}</h1>
       {messages.map(({ sender, content }, i) => {
         return (
@@ -45,7 +56,7 @@ export default function Chat({ socket, title, room }) {
       <form onSubmit={e => {
         e.preventDefault();
         // TODO: Base on user
-        const sender = 'Suneel'
+        const sender = user.name;
         appendMessage(sender, message);
         socket.emit('chat_message', { sender, content: message })
         setMessage('');

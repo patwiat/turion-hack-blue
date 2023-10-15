@@ -7,7 +7,7 @@ import SolarSystem from "./pages/SolarSystem";
 
 import { io } from 'socket.io-client';
 
-export const socket = (() => {
+window.socket = (() => {
   const SERVER_URL = 'http://localhost:3000'
   const socket = io(SERVER_URL);
   
@@ -19,29 +19,23 @@ export const socket = (() => {
 })();
 
 export function App() {
+  window.user = null;
+
   return (
     <div>
       <GoogleOAuthProvider clientId="606620997861-bd8qmbcvsg6400s2ok7votrfhe4qgk8s.apps.googleusercontent.com">
-        <GoogleLogin onSuccess={handleLogin}/>
+        <GoogleLogin onSuccess={credentialResponse => {
+          window.user = handleLogin(credentialResponse);
+        }}/>
       </GoogleOAuthProvider>
-      <SolarSystem socket={socket}/>
+      <SolarSystem user={user} socket={socket}/>
     </div>
   );
 }
 
 const handleLogin = async (credentialResponse) => {
   var obj = jwtDecode(credentialResponse.credential);
-  var data = JSON.stringify(obj);
-  console.log(data);
-
-  // const config = {
-  //   method: 'POST',
-  //   url: 'http://localhost:3000/users',
-  //   headers: {},
-  //   data: data
-  // }
-
-// await axios(config)
+  return obj;
 }
 
 function Chat({ title, room }) {
