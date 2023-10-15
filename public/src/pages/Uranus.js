@@ -30,6 +30,10 @@ const Uranus = () => {
             Your browser does not support the video tag.
           </video>
         </div>
+        <div className="mt-8">
+          <h2 className="text-2xl font-semibold mb-4">Chat</h2>
+          <Chat room={'uranus'} title='Uranus'/>
+        </div>
       </div>
     </main>
   );

@@ -10,7 +10,7 @@ import { App } from "./App";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// import Mercury from "./pages/Mercury.js";
+import Mercury from "./pages/Mercury.js";
 // import Venus from "./pages/Venus";
 // import Earth from "./pages/Earth";
 // import Mars from "./pages/Mars";
@@ -35,10 +35,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-  // {
-  //   path: "/mercury",
-  //   element: <Mercury />,
-  // },
+  {
+    path: "/mercury",
+    element: <Mercury />,
+  },
   // {
   //   path: "/venus",
   //   element: <Venus />,

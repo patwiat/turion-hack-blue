@@ -1,4 +1,5 @@
 import React from 'react';
+import Chat from '../components/Chat';
 
 const Mercury = () => {
   return (
@@ -29,6 +30,10 @@ const Mercury = () => {
             <source src="mercury.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+        </div>
+        <div className="mt-8">
+          <h2 className="text-2xl font-semibold mb-4">Chat</h2>
+          <Chat room={'mercury'} title='Mercury'/>
         </div>
       </div>
     </main>

@@ -88,12 +88,6 @@ async function viewUser(userID) {
     return userIDs.userID
 }
 
-app.get('/chatLog/:planet', async (req, res) => {
-    var planet = req.params['planet']
-    var logs = await viewChatLog(planet)
-    res.send(logs)
-});
-
 // async function addMessage(planet, userId, msg){
 //     var logs = await chatLogs.findOne('$elemMatch', {'earth' : chatLogs})
 //     console.log(logs)
@@ -135,7 +129,7 @@ io.on('connection', socket => {
     console.log(`New connection! (${socket.id}`);
 
     socket.on('join_room', ({ room }) => {
-        console.assert(CHAT_ROOMS.contains(room));
+        console.assert(CHAT_ROOMS.has(room));
         for (const room of Array.from(socket.rooms.values()))
             if (room !== socket.id)
                 socket.leave(room);
@@ -157,6 +151,14 @@ io.on('connection', socket => {
         });
     });
 });
+
+app.get('/chatLogs/:planet', async (req, res) => {
+    var planet = req.params['planet']
+    var logs = await viewChatLog(planet)
+    console.log(logs)
+    res.send(logs)
+});
+
 app.get('*', function (req, res) {
     res.sendFile(ENTRY_POINT, { root: __dirname });
 });

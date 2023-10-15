@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 export default function Chat({ title, room }) {
   const socket = window.socket;
   const user = window.user;
@@ -20,6 +22,18 @@ export default function Chat({ title, room }) {
   }
 
   useEffect(() => {
+    (async () => {
+      if (!window.didDoTheThing) {
+        window.didDoTheThing = true
+        const res = await fetch(`http://localhost:3000/chatLogs/${room}`);
+        for (const { sender, content } of await res.json()) {
+          appendMessage(sender, content)
+        }
+      }
+    })()
+  }, [])
+
+  useEffect(() => {
     const chatMessageListener = ({ sender, content }) => {
       appendMessage(sender, content);
     };
@@ -38,13 +52,10 @@ export default function Chat({ title, room }) {
   return (
     <div 
       style={{
-        display: flex,
-        backgroundColor: 'black',
-        color: 'white',
-        
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
-      <h1>{title}</h1>
       {messages.map(({ sender, content }, i) => {
         return (
           <div key={`message${i}`}>
@@ -56,14 +67,15 @@ export default function Chat({ title, room }) {
       <form onSubmit={e => {
         e.preventDefault();
         // TODO: Base on user
-        const sender = user.name;
+        const sender = user?.name ?? 'Anonymous Anteater';
         appendMessage(sender, message);
         socket.emit('chat_message', { sender, content: message })
         setMessage('');
         console.log('Sent a message:', message)
-      }}>
-        <input type="text" value={message} onChange={e => setMessage(e.target.value)}/>
-        <input type="submit" value="Send"/>
+      }}
+      style={{ display: 'block' }}>
+        <input type="text" value={message} width='100%' onChange={e => setMessage(e.target.value)}/>
+        <input type="submit" value="Send" className='bg-black text-white'/>
       </form>
     </div>
   )
