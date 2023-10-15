@@ -2,12 +2,12 @@ const express = require('express');
 
 const app = express();
 app.use(express.static('public/dist'));
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
+});
 
 const { createServer } = require('http');
 
@@ -17,16 +17,16 @@ const ENTRY_POINT = path.join('public', 'dist', 'index.html');
 
 //Get Requests
 app.get('/', (req, res) => {
-    res.sendFile(ENTRY_POINT, {root: __dirname});
+    res.sendFile(ENTRY_POINT, { root: __dirname });
 });
 
-app.get('/description/:planet', (req, res) =>{
+app.get('/description/:planet', (req, res) => {
     const config = require('./videos/planets.json');
     console.log(config[req.params['planet']]);
     res.send(config[req.params['planet']]['description'])
 });
 
-app.get('/video/:planet', (req, res) =>{
+app.get('/video/:planet', (req, res) => {
     console.log(req.params['planet']);
     res.sendFile(__dirname + '/videos/' + req.params['planet'] + '.mp4');
 });
@@ -41,11 +41,11 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://shanedgilbert:" + process.env.SHANE_ID + "@cluster0.kncph0j.mongodb.net/?retryWrites=true&w=majority";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    }
 });
 
 var database = client.db("Planets");
@@ -67,18 +67,18 @@ process.on('exit', async () => {
 run().catch(console.dir);
 
 
-async function viewChatLog(planet){
-    var query = {"planet": planet}
+async function viewChatLog(planet) {
+    var query = { "planet": planet }
     var logs = await chatLogs.findOne(query);
     return logs.chatLogs
 }
 
-async function addMessage(planet, msg, userId){
-    var query = {"planet": planet}
+async function addMessage(planet, msg, userId) {
+    var query = { "planet": planet }
     var logs = await chatLogs.findOne(query)
 
-    logs.chatLogs.push({'message': msg, 'userId': userId});
-    await chatLogs.updateOne(query, {$set: {chatLogs: logs.chatLogs}})
+    logs.chatLogs.push({ 'message': msg, 'userId': userId });
+    await chatLogs.updateOne(query, { $set: { chatLogs: logs.chatLogs } })
 }
 
 app.get('/chatLog/:planet', async (req, res) => {
@@ -150,7 +150,9 @@ io.on('connection', socket => {
         });
     });
 });
-
+app.get('*', function (req, res) {
+    res.sendFile(ENTRY_POINT, { root: __dirname });
+});
 
 const PORT = 3000
 
