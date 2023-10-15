@@ -11,3 +11,7 @@ To compile into `dist/`:
 # (parcel build index.html)
 npm run build
 ```
+
+You can detect development mode using the globally defined `IS_DEV` constant--
+will be `true` in development (when run with the Parcel dev server, `parcel index.html`) and false in
+production.
