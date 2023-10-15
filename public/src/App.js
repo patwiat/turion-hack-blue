@@ -38,14 +38,14 @@ const handleLogin = async (credentialResponse) => {
   var data = JSON.stringify(obj);
   console.log(data);
 
-  // const config = {
-  //   method: 'POST',
-  //   url: 'http://localhost:3000/users',
-  //   headers: {},
-  //   data: data
-  // }
+  const config = {
+    method: 'POST',
+    url: 'http://localhost:3000/users',
+    headers: {},
+    data: data
+  }
 
-  // await axios(config)
+  await axios(config)
 };
 
 function Chat({ title, room }) {
