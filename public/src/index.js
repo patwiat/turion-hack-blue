@@ -10,19 +10,8 @@ import { App } from "./App";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { io } from "socket.io-client";
+import { App } from './App'
 import Planet from "./pages/Planet";
-
-export const socket = (() => {
-  const SERVER_URL = "http://localhost:3000";
-  const socket = io(SERVER_URL);
-
-  socket.on("connect", () => {
-    console.log("Established socket.io connection with server!");
-  });
-
-  return socket;
-})();
 
 <GoogleLogin
   onSuccess={(credentialResponse) => {

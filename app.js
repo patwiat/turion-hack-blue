@@ -36,10 +36,43 @@ const io = new socketio.Server(server, {
     }
 });
 
+const CHAT_ROOMS = {
+    sun: 'sun',
+    mercury: 'mercury',
+    venus: 'venus',
+    earth: 'earth',
+    moon: 'moon',
+    mars: 'mars',
+    asteroid_belt: 'asteroid_belt',
+    jupiter: 'jupiter',
+    saturn: 'saturn',
+    uranus: 'uranus',
+    neptune: 'neptune',
+    pluto: 'pluto',
+};
+
 io.on('connection', socket => {
     console.log(`New connection! (${socket.id}`);
-});
 
+    socket.on('join_room', ({ room }) => {
+        console.assert(room in CHAT_ROOMS);
+        for (const room of Array.from(socket.rooms.values()))
+            if (room !== socket.id)
+                socket.leave(room);
+        socket.join(room);
+        console.log(`${socket.id} joined room "${room}"`)
+    });
+
+    socket.on('chat_message', ({ sender, content }) => {
+        // Should only be one room: the object the user is currently at.
+        socket.rooms.forEach(room => {
+            if (room === socket.id)
+                return;
+            console.log('Sending to room', room)
+            socket.to(room).emit('chat_message', { sender, content });
+        });
+    });
+});
 
 const PORT = 3000
 
