@@ -127,10 +127,8 @@ run().catch(console.dir);
 async function viewChatLog(planet){
     var query = {"planet": planet}
     var logs = await chatLogs.findOne(query);
-    console.log(logs)
     return logs.chatLogs
 }
-
 
 async function addMessage(planet, msg, userId){
     var query = {"planet": planet}
