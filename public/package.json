@@ -18,8 +18,8 @@
     "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
-    "buffer": "^6.0.3",
     "@parcel/transformer-sass": "^2.10.0",
+    "buffer": "^6.0.3",
     "parcel": "^2.10.0",
     "postcss": "^8.4.31",
     "process": "^0.11.10",

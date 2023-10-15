@@ -11,6 +11,7 @@ import { App } from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { io } from "socket.io-client";
+import Planet from "./pages/Planet";
 
 export const socket = (() => {
   const SERVER_URL = "http://localhost:3000";
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/planet",
+    element: <Planet />,
   },
 ]);
 
