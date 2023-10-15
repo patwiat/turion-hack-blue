@@ -2,6 +2,12 @@ const express = require('express');
 
 const app = express();
 app.use(express.static('public/dist'));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 const { createServer } = require('http');
 
@@ -24,6 +30,7 @@ app.get('/video/:planet', (req, res) =>{
     console.log(req.params['planet']);
     res.sendFile(__dirname + '/videos/' + req.params['planet'] + '.mp4');
 });
+
 
 const server = createServer(app);
 
@@ -61,10 +68,24 @@ run().catch(console.dir);
 
 
 async function viewChatLog(planet){
-    var logs = await chatLogs.findOne();
-    console.log(logs[planet]);
+    var query = {"planet": planet}
+    var logs = await chatLogs.findOne(query);
+    return logs.chatLogs
 }
 
+async function addMessage(planet, msg, userId){
+    var query = {"planet": planet}
+    var logs = await chatLogs.findOne(query)
+
+    logs.chatLogs.push({'message': msg, 'userId': userId});
+    await chatLogs.updateOne(query, {$set: {chatLogs: logs.chatLogs}})
+}
+
+app.get('/chatLog/:planet', async (req, res) => {
+    var planet = req.params['planet']
+    var logs = await viewChatLog(planet)
+    res.send(logs)
+});
 
 // async function addMessage(planet, userId, msg){
 //     var logs = await chatLogs.findOne('$elemMatch', {'earth' : chatLogs})
