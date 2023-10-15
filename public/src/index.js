@@ -25,15 +25,6 @@ export const socket = (() => {
 
 import { App } from './App'
 
-<GoogleLogin
-  onSuccess={credentialResponse => {
-    console.log(credentialResponse);
-  }}
-  onError={() => {
-    console.log('Login Failed');
-  }}
-/>;
-
 const router = createBrowserRouter([
   {
     path: '/',
