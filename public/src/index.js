@@ -10,7 +10,7 @@ import { App } from "./App";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// import Mercury from "./pages/Mercury";
+// import Mercury from "./pages/Mercury.js";
 // import Venus from "./pages/Venus";
 // import Earth from "./pages/Earth";
 // import Mars from "./pages/Mars";
