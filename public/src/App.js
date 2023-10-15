@@ -1,6 +1,8 @@
 import { GoogleOAuthProvider, GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { useState, useEffect } from 'react'
 import { useGoogleLogin } from "@react-oauth/google";
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 import SolarSystem from "./pages/SolarSystem";
 
 import { io } from 'socket.io-client';
@@ -19,14 +21,27 @@ export const socket = (() => {
 export function App() {
   return (
     <div>
-      <SolarSystem />
       <GoogleOAuthProvider clientId="606620997861-bd8qmbcvsg6400s2ok7votrfhe4qgk8s.apps.googleusercontent.com">
-        <GoogleLogin onSuccess={credentialResponse => {
-          console.log(credentialResponse)
-        }}/>;
+        <GoogleLogin onSuccess={handleLogin}/>
       </GoogleOAuthProvider>
+      <SolarSystem socket={socket}/>
     </div>
   );
+}
+
+const handleLogin = async (credentialResponse) => {
+  var obj = jwtDecode(credentialResponse.credential);
+  var data = JSON.stringify(obj);
+  console.log(data);
+
+  // const config = {
+  //   method: 'POST',
+  //   url: 'http://localhost:3000/users',
+  //   headers: {},
+  //   data: data
+  // }
+
+// await axios(config)
 }
 
 function Chat({ title, room }) {
