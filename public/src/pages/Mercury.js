@@ -26,7 +26,7 @@ const Mercury = () => {
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-4">Watch Video</h2>
           <video width="100%" controls>
-            <source src="../../../videos/mercury.mp4" type="video/mp4" />
+            <source src="mercury.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
