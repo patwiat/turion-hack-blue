@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { App } from './App'
 import Planet from "./pages/Planet";
+import Layout from "./components/Layout";
 
 <GoogleLogin
   onSuccess={(credentialResponse) => {
@@ -35,6 +36,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("app")).render(
   <StrictMode>
+    {/* <Layout> */}
     <RouterProvider router={router} />
+    {/* </Layout> */}
   </StrictMode>
 );
