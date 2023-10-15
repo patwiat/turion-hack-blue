@@ -24,7 +24,7 @@ export function App() {
       <GoogleOAuthProvider clientId="606620997861-bd8qmbcvsg6400s2ok7votrfhe4qgk8s.apps.googleusercontent.com">
         <GoogleLogin onSuccess={handleLogin}/>
       </GoogleOAuthProvider>
-      <SolarSystem />
+      <SolarSystem socket={socket}/>
     </div>
   );
 }
