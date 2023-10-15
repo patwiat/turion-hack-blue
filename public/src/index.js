@@ -9,17 +9,16 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import Mercury from "./pages/Mercury.js";
-// import Venus from "./pages/Venus";
-// import Earth from "./pages/Earth";
-// import Mars from "./pages/Mars";
-// import Jupiter from "./pages/Jupiter";
-// import Saturn from "./pages/Saturn";
-// import Uranus from "./pages/Uranus";
-// import Neptune from "./pages/Neptune";
-
-// import Layout from "./components/Layout";
+import Mercury from "./pages/Mercury";
+import Venus from "./pages/Venus";
+import Earth from "./pages/Earth";
+import Mars from "./pages/Mars";
+import Jupiter from "./pages/Jupiter";
+import Saturn from "./pages/Saturn";
+import Uranus from "./pages/Uranus";
+import Neptune from "./pages/Neptune";
+import Planet from "./pages/Planet";
+import Sun from "./pages/Sun";
 
 <GoogleLogin
   onSuccess={(credentialResponse) => {
@@ -35,10 +34,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-  {
-    path: "/mercury",
-    element: <Mercury />,
-  },
+  // {
+  //   path: "/mercury",
+  //   element: <Mercury />,
+  // },
   // {
   //   path: "/venus",
   //   element: <Venus />,

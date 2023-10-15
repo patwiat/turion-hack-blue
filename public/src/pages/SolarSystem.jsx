@@ -41,13 +41,15 @@ const SolarSystem = ({ socket }) => {
         </p>
       </div>
       <img src={Background} alt="Space Background" className="w-full h-full" />
-      <img
-        src={Sun}
-        alt="sun"
-        className="absolute -left-[27rem] w-[1000px] hover:drop-shadow-glow hover:scale-105 duration-300"
-      />
+      <Link to="/sun">
+        <img
+          src={Sun}
+          alt="sun"
+          className="absolute -left-[27rem] w-[1000px] hover:drop-shadow-glow hover:scale-105 duration-300"
+        />
+      </Link>
       <div className="flex justify-center items-center w-fit h-full absolute gap-x-12 left-[22rem] bottom-20">
-        <Link to="/Planet">
+        <Link to="/mercury">
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{
@@ -62,7 +64,7 @@ const SolarSystem = ({ socket }) => {
           </motion.div>
         </Link>
 
-        <Link to="/Planet">
+        <Link to="/venus">
           <motion.div
             animate={{ y: [0, -7, 0] }}
             transition={{
@@ -77,7 +79,7 @@ const SolarSystem = ({ socket }) => {
           </motion.div>
         </Link>
 
-        <Link to="/Planet">
+        <Link to="/earth">
           <motion.div
             animate={{ y: [0, -4, 0] }}
             transition={{
@@ -91,7 +93,7 @@ const SolarSystem = ({ socket }) => {
             </div>
           </motion.div>
         </Link>
-        <Link to="/Planet">
+        <Link to="/mars">
           <motion.div
             animate={{ y: [0, -9, 0] }}
             transition={{
@@ -105,7 +107,7 @@ const SolarSystem = ({ socket }) => {
             </div>
           </motion.div>
         </Link>
-        <Link to="/Planet">
+        <Link to="/jupiter">
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{
@@ -120,7 +122,7 @@ const SolarSystem = ({ socket }) => {
           </motion.div>
         </Link>
 
-        <Link to="/Planet">
+        <Link to="/saturn">
           <motion.div
             animate={{ y: [0, -5, 0] }}
             transition={{
@@ -135,7 +137,7 @@ const SolarSystem = ({ socket }) => {
           </motion.div>
         </Link>
 
-        <Link to="/Planet">
+        <Link to="/uranus">
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{
@@ -149,7 +151,7 @@ const SolarSystem = ({ socket }) => {
             </div>
           </motion.div>
         </Link>
-        <Link to="/Planet">
+        <Link to="/neptune">
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{

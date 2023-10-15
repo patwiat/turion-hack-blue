@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const Earth = () => {
   return (
     <main className="bg-gray-100">
       <div className="container mx-auto p-4">
         <div className="flex flex-wrap">
-
           {/* Image on the left (3/4 width on medium screens and above) */}
           <div className="w-full md:w-3/4">
             <img src="" alt="" />
@@ -16,7 +15,8 @@ const Earth = () => {
             <div className="bg-white p-4 shadow-md">
               <h1 className="text-2xl font-semibold">Earth</h1>
               <p className="text-gray-600 mt-2">
-                Your text goes here. You can add more content, paragraphs, or any other HTML elements as needed.
+                Your text goes here. You can add more content, paragraphs, or
+                any other HTML elements as needed.
               </p>
             </div>
           </div>
@@ -37,6 +37,14 @@ const Earth = () => {
       </div>
     </main>
   );
-}
+};
 
 export default Earth;
+
+// import React from "react";
+
+// const Earth = () => {
+//   return <div>Earth</div>;
+// };
+
+// export default Earth;

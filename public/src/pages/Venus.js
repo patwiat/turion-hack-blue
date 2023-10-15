@@ -40,3 +40,12 @@ const Venus = () => {
 }
 
 export default Venus;
+
+// import React from "react";
+
+// const Venus = () => {
+//   return <div>Venus</div>;
+// };
+
+// export default Venus;
+export default Venus;

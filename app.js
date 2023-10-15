@@ -82,7 +82,7 @@ async function addMessage(planet, msg, userId) {
     await chatLogs.updateOne(query, { $set: { chatLogs: logs.chatLogs } })
 }
 
-async function viewUser(userID) {
+async function getUserID(userID) {
     var query = { "userID": userID }
     var userIDs = await userID.findOne(query);
     return userIDs.userID

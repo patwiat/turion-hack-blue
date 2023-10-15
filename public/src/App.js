@@ -39,8 +39,18 @@ export function App() {
 
 const handleLogin = async (credentialResponse) => {
   var obj = jwtDecode(credentialResponse.credential);
-  return obj;
-}
+  var data = JSON.stringify(obj);
+  console.log(data);
+
+  const config = {
+    method: 'POST',
+    url: 'http://localhost:3000/users',
+    headers: {},
+    data: data
+  }
+
+  await axios(config)
+};
 
 function Chat({ title, room }) {
   const [roomJoined, setRoomJoined] = useState(false);
