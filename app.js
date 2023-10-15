@@ -51,6 +51,7 @@ const client = new MongoClient(uri, {
 var database = client.db("Planets");
 var journeys = database.collection("journeys");
 var chatLogs = database.collection("chatLogs");
+var userID = database.collection("userID");
 
 async function run() {
     // Connect the client to the server	(optional starting in v4.7)
@@ -79,6 +80,12 @@ async function addMessage(planet, msg, userId) {
 
     logs.chatLogs.push({ 'message': msg, 'userId': userId });
     await chatLogs.updateOne(query, { $set: { chatLogs: logs.chatLogs } })
+}
+
+async function viewUser(userID) {
+    var query = { "userID": userID }
+    var userIDs = await userID.findOne(query);
+    return userIDs.userID
 }
 
 app.get('/chatLog/:planet', async (req, res) => {
