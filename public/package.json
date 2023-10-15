@@ -13,13 +13,14 @@
     "@react-oauth/google": "^0.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-google-button": "^0.7.2",
     "react-router": "^6.16.0",
     "react-router-dom": "^6.16.0",
     "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
-    "buffer": "^6.0.3",
     "@parcel/transformer-sass": "^2.10.0",
+    "buffer": "^6.0.3",
     "parcel": "^2.10.0",
     "postcss": "^8.4.31",
     "process": "^0.11.10",
