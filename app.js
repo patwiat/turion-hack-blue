@@ -10,7 +10,19 @@ const ENTRY_POINT = path.join('public', 'dist', 'index.html');
 
 app.get('/', (req, res) => {
     res.sendFile(ENTRY_POINT, {root: __dirname});
-})
+});
+
+app.get('/description/:planet', (req, res) =>{
+    const config = require('./videos/planets.json');
+    console.log(config[req.params['planet']]);
+    res.send(config[req.params['planet']]['description'])
+});
+
+app.get('/video/:planet', (req, res) =>{
+    console.log(req.params['planet']);
+    res.sendFile(__dirname + '/videos/' + req.params['planet'] + '.mp4');
+});
+
 
 const server = createServer(app);
 
