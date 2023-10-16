@@ -34,38 +34,38 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-  // {
-  //   path: "/mercury",
-  //   element: <Mercury />,
-  // },
-  // {
-  //   path: "/venus",
-  //   element: <Venus />,
-  // },
-  // {
-  //   path: "/earth",
-  //   element: <Earth />,
-  // },
-  // {
-  //   path: "/mars",
-  //   element: <Mars />,
-  // },
-  // {
-  //   path: "/jupiter",
-  //   element: <Jupiter />,
-  // },
-  // {
-  //   path: "/saturn",
-  //   element: <Saturn />,
-  // },
-  // {
-  //   path: "/uranus",
-  //   element: <Uranus />,
-  // },
-  // {
-  //   path: "/neptune",
-  //   element: <Neptune />,
-  // },
+  {
+    path: "/mercury",
+    element: <Mercury />,
+  },
+  {
+    path: "/venus",
+    element: <Venus />,
+  },
+  {
+    path: "/earth",
+    element: <Earth />,
+  },
+  {
+    path: "/mars",
+    element: <Mars />,
+  },
+  {
+    path: "/jupiter",
+    element: <Jupiter />,
+  },
+  {
+    path: "/saturn",
+    element: <Saturn />,
+  },
+  {
+    path: "/uranus",
+    element: <Uranus />,
+  },
+  {
+    path: "/neptune",
+    element: <Neptune />,
+  },
   // {
   //   path: "/solarsystem",
   //   element: <SolarSystem />,
